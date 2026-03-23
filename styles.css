@@ -1,0 +1,50 @@
+:root {
+  --purple: #7a2cff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #111111;
+}
+
+.page {
+  padding: 24px;
+}
+
+.logo {
+  display: block;
+  width: min(130px, 40vw);
+  height: auto;
+}
+
+.black-line {
+  margin-top: 16px;
+  width: 100vw;
+  height: 12px;
+  margin-left: calc(50% - 50vw);
+  background: #000000;
+}
+
+.title {
+  margin: 24px 0 8px;
+  color: var(--purple);
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--purple);
+  font-size: clamp(1rem, 2.4vw, 1.6rem);
+  font-weight: 500;
+  text-align: center;
+}
