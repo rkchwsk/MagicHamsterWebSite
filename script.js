@@ -1,12 +1,24 @@
 const logo = document.querySelector('.floating-logo');
 const logoImage = document.querySelector('.floating-logo img');
+const spinCountEl = document.getElementById('spin-count');
+const speedRange = document.getElementById('speed-range');
 
 if (logo && logoImage) {
-  const MIN_TRAVEL_MS = 700;
-  const MAX_TRAVEL_MS = 1800;
+  const FASTEST_MS = 200;
+  const SLOWEST_MS = 3000;
+
+  let spinCount = 0;
+  let speedFactor = 0.5;
+  let flyTimer = null;
 
   const randomInt = (min, max) =>
     Math.floor(Math.random() * (max - min + 1)) + min;
+
+  const getTravelRange = () => {
+    const min = FASTEST_MS + (SLOWEST_MS - FASTEST_MS) * (1 - speedFactor) * 0.7;
+    const max = FASTEST_MS + (SLOWEST_MS - FASTEST_MS) * (1 - speedFactor);
+    return { min, max };
+  };
 
   const getBounds = () => {
     const width = logo.offsetWidth;
@@ -22,12 +34,13 @@ if (logo && logoImage) {
     const { maxX, maxY } = getBounds();
     const nextX = randomInt(0, maxX);
     const nextY = randomInt(0, maxY);
-    const duration = randomInt(MIN_TRAVEL_MS, MAX_TRAVEL_MS);
+    const { min, max } = getTravelRange();
+    const duration = randomInt(min, max);
 
     logo.style.transitionDuration = `${duration}ms`;
     logo.style.transform = `translate(${nextX}px, ${nextY}px)`;
 
-    window.setTimeout(flyToRandomSpot, duration);
+    flyTimer = window.setTimeout(flyToRandomSpot, duration);
   };
 
   const resetAfterResize = () => {
@@ -48,7 +61,15 @@ if (logo && logoImage) {
     logoImage.classList.remove('spin');
     void logoImage.offsetWidth;
     logoImage.classList.add('spin');
+    spinCount++;
+    if (spinCountEl) spinCountEl.textContent = spinCount;
   });
+
+  if (speedRange) {
+    speedRange.addEventListener('input', () => {
+      speedFactor = speedRange.value / 100;
+    });
+  }
 
   window.addEventListener('resize', resetAfterResize);
   flyToRandomSpot();
