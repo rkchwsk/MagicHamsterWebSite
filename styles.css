@@ -15,6 +15,56 @@ body {
   overflow: hidden;
 }
 
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.menu-title {
+  margin: 0;
+  padding-top: 48px;
+  font-size: clamp(2rem, 7vw, 3.6rem);
+  font-weight: 700;
+  color: var(--purple);
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin-top: 60px;
+}
+
+.menu-btn {
+  display: block;
+  width: 220px;
+  padding: 14px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  color: #111;
+  background: #fff;
+  border: 2px solid #999;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.menu-btn:hover {
+  background: #f0f0f0;
+  transform: scale(1.05);
+}
+
+.menu-btn:active {
+  transform: scale(0.97);
+}
+
 .page {
   padding: 24px;
 }
@@ -61,19 +111,6 @@ body {
   width: 100%;
   height: auto;
   transform-origin: center center;
-}
-
-.floating-logo img.spin {
-  animation: spin-twice 0.45s ease-in-out;
-}
-
-@keyframes spin-twice {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(720deg);
-  }
 }
 
 .spin-counter {
@@ -141,4 +178,392 @@ body {
   background: #1a7a28;
   border: none;
   cursor: pointer;
+}
+
+/* ── Worlds page ── */
+
+.worlds-page {
+  min-height: 100vh;
+  background: #e0e0e0;
+  padding: 24px 24px 80px;
+  overflow: auto;
+}
+
+body:has(.worlds-page) {
+  overflow: auto;
+}
+
+.worlds-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.worlds-header h1 {
+  margin: 0 0 20px;
+  color: var(--purple);
+  font-size: clamp(1.6rem, 5vw, 2.8rem);
+  font-weight: 700;
+}
+
+.btn-create-world {
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111;
+  background: #fff;
+  border: 2px solid #999;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-create-world:hover {
+  background: #f0f0f0;
+}
+
+/* ── World cards grid ── */
+
+.worlds-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.world-card {
+  width: 260px;
+  border: 2px solid #999;
+  overflow: hidden;
+  background: #fff;
+}
+
+.world-card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: #fff;
+}
+
+.world-card-top img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.world-card-top .world-card-name-top {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  word-break: break-word;
+}
+
+.world-card-strip {
+  width: 100%;
+  height: 6px;
+  background: #000;
+}
+
+.world-card-bottom {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.world-card-bottom .world-card-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.world-card-bottom .world-card-info {
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.world-card-bottom .btn-play-world {
+  display: inline-block;
+  padding: 8px 0;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  color: #111;
+  background: #2ecc40;
+  border: 2px solid #999;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.world-card-bottom .btn-play-world:hover {
+  background: #27ae35;
+}
+
+.world-card-bottom .btn-delete-world {
+  display: inline-block;
+  padding: 6px 0;
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  color: #111;
+  background: #fff;
+  border: 2px solid #999;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.world-card-bottom .btn-delete-world:hover {
+  background: #f0f0f0;
+}
+
+/* ── Create world form ── */
+
+.create-form-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.45);
+  justify-content: center;
+  align-items: center;
+}
+
+.create-form-overlay.visible {
+  display: flex;
+}
+
+.create-form {
+  background: #e0e0e0;
+  width: 360px;
+  max-width: 92vw;
+  padding: 0;
+  border: 2px solid #999;
+}
+
+.create-form h2 {
+  margin: 0;
+  padding: 18px 20px 14px;
+  font-size: 1.3rem;
+  color: var(--purple);
+  font-weight: 700;
+}
+
+.create-form .form-strip {
+  width: 100%;
+  height: 5px;
+  background: #000;
+}
+
+.create-form .form-fields {
+  padding: 16px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.create-form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.create-form input[type='text'],
+.create-form input[type='number'] {
+  padding: 8px 10px;
+  font-size: 1rem;
+  border: 2px solid #999;
+  border-radius: 0;
+  background: #fff;
+  outline: none;
+}
+
+.create-form input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: #2ecc40;
+  outline: none;
+  cursor: pointer;
+}
+
+.create-form input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #1a7a28;
+  border: none;
+  cursor: pointer;
+}
+
+.create-form input[type='range']::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #1a7a28;
+  border: none;
+  cursor: pointer;
+}
+
+.create-form .form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.create-form .btn-submit {
+  flex: 1;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  background: #2ecc40;
+  border: 2px solid #999;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.create-form .btn-submit:hover {
+  background: #27ae35;
+}
+
+.create-form .btn-cancel {
+  flex: 1;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  background: #fff;
+  border: 2px solid #999;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.create-form .btn-cancel:hover {
+  background: #f0f0f0;
+}
+
+.speed-value {
+  font-weight: 700;
+  color: #1a7a28;
+}
+
+/* ── Exit button (play page) ── */
+
+.btn-exit {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 20;
+  padding: 10px 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #111;
+  background: #fff;
+  border: 2px solid #999;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-exit:hover {
+  background: #f0f0f0;
+}
+
+/* ── Edit button (world card) ── */
+
+.world-card-bottom .btn-edit-world {
+  display: inline-block;
+  padding: 6px 0;
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  color: #111;
+  background: #ffe066;
+  border: 2px solid #999;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.world-card-bottom .btn-edit-world:hover {
+  background: #ffd633;
+}
+
+/* ── Settings page ── */
+
+.settings-page {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.settings-page h1 {
+  margin: 0;
+  color: var(--purple);
+  font-size: clamp(1.6rem, 5vw, 2.8rem);
+  font-weight: 700;
+}
+
+.settings-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.settings-section label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.lang-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.lang-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  background: #fff;
+  border: 2px solid #999;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.lang-btn:hover {
+  background: #f0f0f0;
+}
+
+.lang-btn.active {
+  border-color: var(--purple);
+  background: #ede0ff;
+  color: var(--purple);
 }

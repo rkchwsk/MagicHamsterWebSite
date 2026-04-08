@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Волшебный Хомячок</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="settings-page">
+      <h1 data-i18n="settingsTitle">Настройки</h1>
+
+      <div class="settings-section">
+        <label data-i18n="language">Язык</label>
+        <div class="lang-buttons" id="lang-buttons">
+          <button class="lang-btn" data-lang="ru">Русский</button>
+          <button class="lang-btn" data-lang="en">English</button>
+          <button class="lang-btn" data-lang="nl">Nederlands</button>
+          <button class="lang-btn" data-lang="es">Español</button>
+        </div>
+      </div>
+
+      <a href="index.html" class="menu-btn" data-i18n="back">Назад</a>
+    </div>
+
+    <script src="lang.js"></script>
+    <script>
+      const buttons = document.querySelectorAll('.lang-btn');
+
+      function updateActive() {
+        const current = I18N.getLang();
+        buttons.forEach((btn) => {
+          btn.classList.toggle('active', btn.dataset.lang === current);
+        });
+      }
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          I18N.setLang(btn.dataset.lang);
+          I18N.applyToPage();
+          updateActive();
+        });
+      });
+
+      I18N.applyToPage();
+      updateActive();
+    </script>
+  </body>
+</html>

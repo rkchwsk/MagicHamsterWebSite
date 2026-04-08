@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Волшебный Хомячок</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="worlds-page">
+      <div class="worlds-header">
+        <h1 data-i18n="chooseWorld">Выбери мир</h1>
+        <button class="btn-create-world" id="btn-open-create" data-i18n="createNewWorld">Создать новый мир</button>
+      </div>
+
+      <div class="worlds-grid" id="worlds-grid"></div>
+    </div>
+
+    <div class="create-form-overlay" id="create-overlay">
+      <div class="create-form">
+        <h2 data-i18n="newWorld">Новый мир</h2>
+        <div class="form-strip"></div>
+        <div class="form-fields">
+          <label>
+            <span data-i18n="worldName">Название мира</span>
+            <input type="text" id="world-name" data-i18n-placeholder="worldNamePlaceholder" placeholder="Мой мир" maxlength="30" />
+          </label>
+          <div class="form-strip"></div>
+          <label>
+            <span data-i18n="hamsterSpeed">Скорость хомячка</span>: <span class="speed-value" id="speed-val">50</span>
+            <input type="range" id="world-speed" min="1" max="100" value="50" />
+          </label>
+          <label>
+            <span data-i18n="spinsOnHit">Вращений при попадании</span>
+            <input type="number" id="world-spins" min="1" max="1000" value="2" />
+          </label>
+          <div class="form-actions">
+            <button class="btn-submit" id="btn-save-world" data-i18n="create">Создать</button>
+            <button class="btn-cancel" id="btn-cancel-create" data-i18n="cancel">Отмена</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="lang.js"></script>
+    <script src="db.js"></script>
+    <script src="worlds.js"></script>
+    <script>I18N.applyToPage();</script>
+  </body>
+</html>
