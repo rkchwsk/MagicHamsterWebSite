@@ -25,7 +25,7 @@
       const btn = document.getElementById('btn-toggle-upgrade');
 
       function isActive() {
-        return localStorage.getItem(UPGRADE_KEY) === '1';
+        return SafeStorage.get(UPGRADE_KEY) === '1';
       }
 
       function render() {
@@ -39,7 +39,7 @@
       }
 
       btn.addEventListener('click', () => {
-        localStorage.setItem(UPGRADE_KEY, isActive() ? '0' : '1');
+        SafeStorage.set(UPGRADE_KEY, isActive() ? '0' : '1');
         render();
       });
 

@@ -1,3 +1,18 @@
+const SafeStorage = (() => {
+  const mem = {};
+
+  function get(key) {
+    try { return localStorage.getItem(key); } catch { return mem[key] ?? null; }
+  }
+
+  function set(key, value) {
+    try { localStorage.setItem(key, value); } catch { /* ignore */ }
+    mem[key] = value;
+  }
+
+  return { get, set };
+})();
+
 const I18N = (() => {
   const KEY = 'hamster_lang';
 
@@ -145,11 +160,11 @@ const I18N = (() => {
   };
 
   function getLang() {
-    return localStorage.getItem(KEY) || 'ru';
+    return SafeStorage.get(KEY) || 'ru';
   }
 
   function setLang(lang) {
-    localStorage.setItem(KEY, lang);
+    SafeStorage.set(KEY, lang);
   }
 
   function t(key) {

@@ -11,7 +11,7 @@ const spinsInput = document.getElementById('world-spins');
 
 let editingId = null;
 const UPGRADE_KEY = 'hamster_speed_upgrade';
-const speedUpgradeActive = () => localStorage.getItem(UPGRADE_KEY) === '1';
+const speedUpgradeActive = () => SafeStorage.get(UPGRADE_KEY) === '1';
 
 // On return from play page, save accumulated spins
 (function handleReturnSpins() {

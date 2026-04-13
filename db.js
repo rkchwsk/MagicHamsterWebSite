@@ -6,12 +6,12 @@ const DB = (() => {
   const KEY = 'hamster_worlds';
 
   function _load() {
-    try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+    try { return JSON.parse(SafeStorage.get(KEY)) || []; }
     catch { return []; }
   }
 
   function _save(worlds) {
-    localStorage.setItem(KEY, JSON.stringify(worlds));
+    SafeStorage.set(KEY, JSON.stringify(worlds));
   }
 
   function getAllWorlds() { return _load(); }

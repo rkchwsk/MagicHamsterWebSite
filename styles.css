@@ -206,7 +206,8 @@ body {
   overflow: auto;
 }
 
-body:has(.worlds-page) {
+body:has(.worlds-page),
+body:has(.market-page) {
   overflow: auto;
 }
 
