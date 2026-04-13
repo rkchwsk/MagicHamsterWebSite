@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Волшебный Хомячок</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="market-page">
+      <a href="index.html" class="market-back" data-i18n="back">Назад</a>
+
+      <div class="market-card">
+        <div class="market-card-img">
+          <img src="main_hamster.jpg" alt="Хомячок" />
+        </div>
+        <p class="market-card-label" data-i18n="moreSpeed">больше скоростей</p>
+        <button class="market-card-btn" id="btn-toggle-upgrade" data-i18n="activate">Активировать</button>
+      </div>
+    </div>
+
+    <script src="lang.js"></script>
+    <script>
+      const UPGRADE_KEY = 'hamster_speed_upgrade';
+      const btn = document.getElementById('btn-toggle-upgrade');
+
+      function isActive() {
+        return localStorage.getItem(UPGRADE_KEY) === '1';
+      }
+
+      function render() {
+        if (isActive()) {
+          btn.textContent = I18N.t('deactivate');
+          btn.classList.add('active');
+        } else {
+          btn.textContent = I18N.t('activate');
+          btn.classList.remove('active');
+        }
+      }
+
+      btn.addEventListener('click', () => {
+        localStorage.setItem(UPGRADE_KEY, isActive() ? '0' : '1');
+        render();
+      });
+
+      I18N.applyToPage();
+      render();
+    </script>
+  </body>
+</html>

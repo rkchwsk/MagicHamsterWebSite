@@ -180,6 +180,23 @@ body {
   cursor: pointer;
 }
 
+@media (max-width: 480px) {
+  .spin-counter,
+  .speed-slider {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .spin-counter {
+    bottom: 24px;
+  }
+
+  .speed-slider {
+    bottom: 80px;
+  }
+}
+
 /* ── Worlds page ── */
 
 .worlds-page {
@@ -191,6 +208,10 @@ body {
 
 body:has(.worlds-page) {
   overflow: auto;
+}
+
+.worlds-page > .menu-btn {
+  margin: 32px auto 0;
 }
 
 .worlds-header {
@@ -506,6 +527,86 @@ body:has(.worlds-page) {
 
 .world-card-bottom .btn-edit-world:hover {
   background: #ffd633;
+}
+
+/* ── Market page ── */
+
+.market-page {
+  min-height: 100vh;
+  background: #fff;
+  padding: 24px;
+}
+
+.market-back {
+  display: inline-block;
+  padding: 10px 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #111;
+  background: #fff;
+  border: 2px solid #999;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.market-back:hover {
+  background: #f0f0f0;
+}
+
+.market-card {
+  margin-top: 24px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.market-card-img {
+  width: 140px;
+  height: 140px;
+  border: 2px solid #999;
+  overflow: hidden;
+}
+
+.market-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.market-card-label {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+.market-card-btn {
+  padding: 10px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  background: #2ecc40;
+  border: 2px solid #999;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.market-card-btn:hover {
+  background: #27ae35;
+}
+
+.market-card-btn.active {
+  background: #fff;
+  color: #111;
+}
+
+.market-card-btn.active:hover {
+  background: #f0f0f0;
 }
 
 /* ── Settings page ── */

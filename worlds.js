@@ -10,6 +10,8 @@ const speedVal = document.getElementById('speed-val');
 const spinsInput = document.getElementById('world-spins');
 
 let editingId = null;
+const UPGRADE_KEY = 'hamster_speed_upgrade';
+const speedUpgradeActive = () => localStorage.getItem(UPGRADE_KEY) === '1';
 
 // On return from play page, save accumulated spins
 (function handleReturnSpins() {
@@ -94,6 +96,7 @@ function editWorld(id) {
   formTitle.textContent = I18N.t('editWorld');
   btnSave.textContent = I18N.t('save');
   nameInput.value = world.name;
+  applySpeedMax();
   speedInput.value = world.speed;
   speedVal.textContent = world.speed;
   spinsInput.value = world.spins;
@@ -143,11 +146,16 @@ function renderWorlds() {
   });
 }
 
+function applySpeedMax() {
+  speedInput.max = speedUpgradeActive() ? 1000 : 100;
+}
+
 function openForm() {
   editingId = null;
   formTitle.textContent = I18N.t('newWorld');
   btnSave.textContent = I18N.t('create');
   nameInput.value = '';
+  applySpeedMax();
   speedInput.value = 50;
   speedVal.textContent = '50';
   spinsInput.value = 2;

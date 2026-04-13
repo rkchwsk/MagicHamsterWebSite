@@ -33,6 +33,9 @@ const I18N = (() => {
       language: 'Язык',
       settingsTitle: 'Настройки',
       back: 'Назад',
+      moreSpeed: 'больше скоростей',
+      activate: 'Активировать',
+      deactivate: 'Убрать обновление',
     },
     en: {
       siteTitle: 'Magic Hamster',
@@ -65,6 +68,9 @@ const I18N = (() => {
       language: 'Language',
       settingsTitle: 'Settings',
       back: 'Back',
+      moreSpeed: 'more speeds',
+      activate: 'Activate',
+      deactivate: 'Remove upgrade',
     },
     nl: {
       siteTitle: 'Magische Hamster',
@@ -97,6 +103,9 @@ const I18N = (() => {
       language: 'Taal',
       settingsTitle: 'Instellingen',
       back: 'Terug',
+      moreSpeed: 'meer snelheden',
+      activate: 'Activeren',
+      deactivate: 'Upgrade verwijderen',
     },
     es: {
       siteTitle: 'Hámster Mágico',
@@ -129,6 +138,9 @@ const I18N = (() => {
       language: 'Idioma',
       settingsTitle: 'Ajustes',
       back: 'Atrás',
+      moreSpeed: 'más velocidades',
+      activate: 'Activar',
+      deactivate: 'Quitar mejora',
     },
   };
 
