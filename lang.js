@@ -2,7 +2,11 @@ const SafeStorage = (() => {
   const mem = {};
 
   function get(key) {
-    try { return localStorage.getItem(key); } catch { return mem[key] ?? null; }
+    try {
+      const val = localStorage.getItem(key);
+      if (val !== null) return val;
+    } catch (e) { /* localStorage unavailable */ }
+    return mem[key] ?? null;
   }
 
   function set(key, value) {

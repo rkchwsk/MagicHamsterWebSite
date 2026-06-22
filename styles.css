@@ -536,6 +536,7 @@ body:has(.market-page) {
   min-height: 100vh;
   background: #fff;
   padding: 24px;
+  overflow: auto;
 }
 
 .market-back {
